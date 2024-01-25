@@ -21,20 +21,20 @@ defmodule HumbleUlid do
     generate_ulid(timestamp)
   end
 
-  def decode(ulid, type \\ :binary)
-      when is_bitstring(ulid) and type in [:binary, :timestamp, :tuple] do
-    decoded = decode_crockford32(ulid)
+  def decode(ulid, to \\ :binary)
+      when is_bitstring(ulid) and to in [:binary, :timestamp, :tuple] do
+    ulid = if bit_size(ulid) == 208, do: String.upcase(ulid), else: ulid
 
-    <<timestamp::unsigned-48, rand::binary>> = decoded
+    <<timestamp::unsigned-48, rand::binary>> = decoded = decode_crockford32(ulid)
 
-    case type do
+    case to do
       :binary -> decoded
       :timestamp -> timestamp
       :tuple -> {timestamp, rand}
     end
   end
 
-  defp generate_ulid(timestamp) do
+  defp generate_ulid(timestamp) when timestamp > -1 and timestamp <= 281_474_976_710_655 do
     <<timestamp::unsigned-48, :crypto.strong_rand_bytes(10)::binary>>
   end
 
@@ -49,16 +49,14 @@ defmodule HumbleUlid do
   end
 
   defp decode_crockford32(
-         <<c1::5, c2::5, c3::5, c4::5, c5::5, c6::5, c7::5, c8::5, c9::5, c10::5, c11::5, c12::5,
-           c13::5, c14::5, c15::5, c16::5, c17::5, c18::5, c19::5, c20::5, c21::5, c22::5, c23::5,
-           c24::5, c25::5, c26::5>>
+         <<c1::8, c2::8, c3::8, c4::8, c5::8, c6::8, c7::8, c8::8, c9::8, c10::8, c11::8, c12::8,
+           c13::8, c14::8, c15::8, c16::8, c17::8, c18::8, c19::8, c20::8, c21::8, c22::8, c23::8,
+           c24::8, c25::8, c26::8>>
        ) do
-    <<@padding, decoded::binary>> =
-      <<dec(c1), dec(c2), dec(c3), dec(c4), dec(c5), dec(c6), dec(c7), dec(c8), dec(c9), dec(c10),
-        dec(c11), dec(c12), dec(c13), dec(c14), dec(c15), dec(c16), dec(c17), dec(c18), dec(c19),
-        dec(c20), dec(c21), dec(c22), dec(c23), dec(c24), dec(c25), dec(c26)>>
-
-    decoded
+    <<dec(c1)::3, dec(c2)::5, dec(c3)::5, dec(c4)::5, dec(c5)::5, dec(c6)::5, dec(c7)::5,
+      dec(c8)::5, dec(c9)::5, dec(c10)::5, dec(c11)::5, dec(c12)::5, dec(c13)::5, dec(c14)::5,
+      dec(c15)::5, dec(c16)::5, dec(c17)::5, dec(c18)::5, dec(c19)::5, dec(c20)::5, dec(c21)::5,
+      dec(c22)::5, dec(c23)::5, dec(c24)::5, dec(c25)::5, dec(c26)::5>>
   end
 
   @compile {:inline, enc: 1}

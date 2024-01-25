@@ -43,4 +43,23 @@ defmodule HumbleUlidTest do
 
     assert String.length(ulid) == 26
   end
+
+  test "highest possible ULID" do
+    ulid = HumbleUlid.generate(281_474_976_710_655)
+
+    # only check first 10 characters because we don't mock the RNG
+    assert String.starts_with?(ulid, "7ZZZZZZZZZ") == true
+
+    assert_raise(FunctionClauseError, fn ->
+      HumbleUlid.generate(281_474_976_710_656)
+    end)
+  end
+
+  test "decoding is case insensitive" do
+    ulid =
+      HumbleUlid.generate(1_706_197_673_270)
+      |> String.downcase()
+
+    assert HumbleUlid.decode(ulid, :timestamp) == 1_706_197_673_270
+  end
 end
