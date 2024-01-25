@@ -1,6 +1,6 @@
 # HumbleUlid
 
-Yet an nother ULID library intended for use in other humble packages.
+Yet another ULID library intended for use in other Humble packages.
 
 ## Installation
 
@@ -21,7 +21,7 @@ be found at <https://hexdocs.pm/humble_ulid>.
 
 ## Why yet an other ULID package?
 
-I noticed that the other ULID packages where causing warnings during compilation
-and haven't been published to hex in a while.
+I noticed that the other ULID packages were causing warnings during compilation and
+haven't been published to Hex in a while.
 
-I'll try to keep this implementation up to date with new versions of elixir.
+I'll try to keep this implementation up to date with new versions of Elixir
