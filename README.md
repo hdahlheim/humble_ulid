@@ -1,6 +1,6 @@
 # HumbleUlid
 
-Yet another ULID library intended for use in other Humble packages.
+Yet another ULID library mainly intended for use in other Humble packages.
 
 ## Installation
 
@@ -25,14 +25,16 @@ Copyright (c) 2024 Henning Dahlheim
 
 Distributed under the [MIT License](LICENSE).
 
-## Why yet an other ULID package?
+## Why yet another ULID package?
 
 I noticed that the other ULID packages were causing warnings during compilation and
-haven't been published to Hex in a while.
+haven't been published to Hex in a while. Instead of opening issues asking for a
+new release, I wanted to implement it myself as an exercise with the option to change
+the API to my needs.
 
 This package aims to be dependency free.
 
-I'll try to keep this implementation up to date with new versions of Elixir
+I'll try to keep this implementation up to date with new versions of Elixir.
 
 ## References
 
