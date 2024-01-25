@@ -39,7 +39,6 @@ defmodule HumbleUlid.MixProject do
 
   defp docs do
     [
-      main: "README",
       extras: ["README.md", "LICENSE"]
     ]
   end
