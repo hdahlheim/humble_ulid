@@ -33,13 +33,13 @@ defmodule HumbleUlidTest do
   end
 
   test "ULID as binary is 128 bits long" do
-    ulid = HumbleUlid.generate(:binary)
+    ulid = HumbleUlid.generate_binary()
 
     assert bit_size(ulid) == 128
   end
 
   test "ULID as string is 26 characters long" do
-    ulid = HumbleUlid.generate(:string)
+    ulid = HumbleUlid.generate()
 
     assert String.length(ulid) == 26
   end

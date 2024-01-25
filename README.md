@@ -1,6 +1,6 @@
 # HumbleUlid
 
-Work in progress ULID library intended for use in other humble packages
+Yet an nother ULID library intended for use in other humble packages.
 
 ## Installation
 
@@ -19,3 +19,9 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/humble_ulid>.
 
+## Why yet an other ULID package?
+
+I noticed that the other ULID packages where causing warnings during compilation
+and haven't been published to hex in a while.
+
+I'll try to keep this implementation up to date with new versions of elixir.
