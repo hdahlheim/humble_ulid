@@ -19,9 +19,22 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/humble_ulid>.
 
+## License
+
+Copyright (c) 2024 Henning Dahlheim
+
+Distributed under the [MIT License](LICENSE).
+
 ## Why yet an other ULID package?
 
 I noticed that the other ULID packages were causing warnings during compilation and
 haven't been published to Hex in a while.
 
+This package aims to be dependency free.
+
 I'll try to keep this implementation up to date with new versions of Elixir
+
+## References
+
+[ULID spec](https://github.com/ulid/spec)
+[Ecto.ULID](https://github.com/TheRealReal/ecto-ulid)
