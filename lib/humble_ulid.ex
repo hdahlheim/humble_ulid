@@ -1,9 +1,22 @@
 defmodule HumbleUlid do
   @moduledoc """
-  Documentation for `HumbleUlid`.
+  Universally Unique Lexicographically Sortable Identifier.
+
+  - Binary compatible with 128 bit UUIDs
+  - 1.21e+24 unique ULIDs per millisecond
+  - Lexicographically sortable!
+  - Uses Crockford's base32 for better efficiency and readability (5 bits per character)
+  - Case insensitive
+
+  ## How to use
+
+      alias HumbleUlid, as: ULID
+
+      ULID.generate()
+      ULID.generate_binary()
   """
 
-  # two bit padding to reach 130 bits
+  # two bit padding to reach 130 bits for Crockford base32 encoding
   @padding <<0::2>>
 
   @doc """
